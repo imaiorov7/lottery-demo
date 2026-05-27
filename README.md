@@ -119,6 +119,31 @@ npm run dev
 2. **Direct Purchase** - Player buys entry through web frontend
 3. **Physical Sale** - POS operator sells ticket, prints QR code
 
+## Netlify Landing Page
+
+A landing page is included in `landing/` for Netlify hosting. It provides a hub to access all three portals.
+
+### Deploy to Netlify
+
+1. Connect this repo to Netlify
+2. Set **Base directory** to `landing`
+3. Set **Build command** to the one in `landing/netlify.toml` (auto-detected)
+4. Add environment variable in Netlify:
+   - `LOTTERY_HOST` = `http://88.99.99.83` (your Docker server IP)
+
+The landing page will link to:
+- `{LOTTERY_HOST}:5173` — Player Frontend
+- `{LOTTERY_HOST}:5174` — Admin Backoffice
+- `{LOTTERY_HOST}:5175` — POS Terminal
+
+### Local preview
+
+```bash
+cd landing
+python3 -m http.server 8080
+# Open http://localhost:8080
+```
+
 ## Key Features
 
 - Multiple concurrent lotteries

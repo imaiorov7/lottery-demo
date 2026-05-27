@@ -34,7 +34,7 @@ export default function WidgetPreview() {
     finally { setSsoLoading(false) }
   }
 
-  const widgetBase = 'http://localhost:5173/widget'
+  const widgetBase = `${import.meta.env.VITE_FRONTEND_URL || 'http://localhost:5173'}/widget`
   const widgetUrl = `${widgetBase}?theme=${theme}${ssoToken ? `&token=${ssoToken}` : ''}`
   const embedCode = `<!-- Step 1: Your backend calls our SSO endpoint -->
 POST /api/auth/widget-sso
@@ -119,7 +119,7 @@ POST /api/auth/widget-sso
           {mode === 'popup' && (
             <div className="bg-white rounded-xl border p-4">
               <h3 className="text-sm font-semibold text-gray-700 mb-2">Popup Widget Code</h3>
-              <textarea readOnly rows={5} value={`<button onclick="openLotteryWidget('${selected}')" style="position:fixed;bottom:20px;right:20px;background:#6366f1;color:white;border:none;padding:12px 24px;border-radius:999px;cursor:pointer;font-size:14px;font-weight:600;box-shadow:0 4px 12px rgba(99,102,241,.4)">Enter Lottery</button>\n<script src="http://localhost:5173/widget.js"></script>`}
+              <textarea readOnly rows={5} value={`<button onclick="openLotteryWidget('${selected}')" style="position:fixed;bottom:20px;right:20px;background:#6366f1;color:white;border:none;padding:12px 24px;border-radius:999px;cursor:pointer;font-size:14px;font-weight:600;box-shadow:0 4px 12px rgba(99,102,241,.4)">Enter Lottery</button>\n<script src="${import.meta.env.VITE_FRONTEND_URL || 'http://localhost:5173'}/widget.js"></script>`}
                 className="w-full bg-gray-50 border rounded-lg px-3 py-2 text-xs font-mono" />
               <button onClick={() => setShowPopup(true)}
                 className="mt-2 w-full bg-purple-600 text-white py-2 rounded-lg text-xs font-medium hover:bg-purple-700">
