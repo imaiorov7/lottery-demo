@@ -1,0 +1,75 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: lottery
+      POSTGRES_PASSWORD: lottery_demo
+      POSTGRES_DB: lottery
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lottery -d lottery"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    command: sh -c "uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://lottery:lottery_demo@db:5432/lottery
+      SECRET_KEY: demo-secret-key-change-in-production
+    depends_on:
+      db:
+        condition: service_healthy
+      seed:
+        condition: service_completed_successfully
+    volumes:
+      - ./backend:/app
+
+  seed:
+    build: ./backend
+    command: python -m app.seed
+    environment:
+      DATABASE_URL: postgresql+asyncpg://lottery:lottery_demo@db:5432/lottery
+      SECRET_KEY: demo-secret-key-change-in-production
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://88.99.99.83:8000
+    depends_on:
+      - backend
+
+  backoffice:
+    build: ./backoffice
+    ports:
+      - "5174:5174"
+    environment:
+      VITE_API_URL: http://88.99.99.83:8000
+    depends_on:
+      - backend
+
+  pos:
+    build: ./pos
+    ports:
+      - "5175:5173"
+    environment:
+      VITE_API_URL: http://88.99.99.83:8000
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
