@@ -4,35 +4,28 @@ __pycache__/
 *$py.class
 *.so
 .Python
-env/
-venv/
+*.egg-info/
+.pytest_cache/
 .venv/
-*.db
-*.sqlite
-*.sqlite3
+venv/
+env/
 
 # Node
 node_modules/
 dist/
-.nuxt/
-.next/
-.cache/
+.vite/
+*.log
+npm-debug.log*
 
-# Environment
+# Env
 .env
 .env.local
-.env.*.local
 
 # IDE
 .vscode/
 .idea/
 *.swp
-*.swo
-*~
 
 # OS
 .DS_Store
 Thumbs.db
-
-# Docker
-pgdata/
