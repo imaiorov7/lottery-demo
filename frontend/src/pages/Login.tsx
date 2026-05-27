@@ -19,14 +19,12 @@ export default function Login() {
       // Check role from token payload to redirect admin/pos users
       try {
         const payload = JSON.parse(atob(res.access_token.split('.')[1]))
-        const base = import.meta.env.VITE_FRONTEND_URL || 'http://localhost:5173'
-        const baseUrl = base.replace(/:\d+$/, '')
         if (payload.role === 'admin') {
-          window.location.href = `${baseUrl}:5174`
+          window.location.href = '/admin/'
           return
         }
         if (payload.role === 'pos_operator') {
-          window.location.href = `${baseUrl}:5175`
+          window.location.href = '/pos/'
           return
         }
       } catch {}

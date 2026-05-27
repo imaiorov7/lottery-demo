@@ -103,21 +103,21 @@
     <p class="subtitle">Select your portal to continue</p>
 
     <div class="cards">
-      <a id="link-player" href="#" class="card player">
+      <a href="/app/" class="card player">
         <div class="card-icon">🎰</div>
         <h2>Player Frontend</h2>
         <p>Buy tickets, play games, redeem coupons and check your entries.</p>
         <span class="badge player">Player</span>
       </a>
 
-      <a id="link-admin" href="#" class="card admin">
+      <a href="/admin/" class="card admin">
         <div class="card-icon">⚙️</div>
         <h2>Admin Backoffice</h2>
         <p>Manage lotteries, view reports, run draws and configure integrations.</p>
         <span class="badge admin">Admin</span>
       </a>
 
-      <a id="link-pos" href="#" class="card pos">
+      <a href="/pos/" class="card pos">
         <div class="card-icon">🎫</div>
         <h2>POS Terminal</h2>
         <p>Sell physical tickets, validate entries and check winners.</p>
@@ -130,12 +130,5 @@
       <a href="https://github.com/imaiorov7/lottery-demo" target="_blank">GitHub</a>
     </p>
   </div>
-
-  <script>
-    var host = '__LOTTERY_HOST__' || 'http://localhost';
-    document.getElementById('link-player').href = host + ':5173';
-    document.getElementById('link-admin').href  = host + ':5174';
-    document.getElementById('link-pos').href    = host + ':5175';
-  </script>
 </body>
 </html>

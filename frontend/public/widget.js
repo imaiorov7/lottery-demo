@@ -24,10 +24,7 @@
     };
 
     var iframe = document.createElement('iframe');
-    var baseUrl = (document.currentScript && document.currentScript.src)
-      ? document.currentScript.src.replace(/\/widget\.js.*$/, '')
-      : 'http://localhost:5173';
-    var src = baseUrl + '/widget?theme=dark';
+    var src = '/app/widget?theme=dark';
     if (lotteryId) src += '&lottery=' + lotteryId;
     iframe.src = src;
     iframe.style.cssText = 'width:100%;height:100%;border:none;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.5)';

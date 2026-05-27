@@ -1,0 +1,33 @@
+[build]
+  command = "bash netlify-build.sh"
+  publish = "dist"
+
+# Proxy API calls to the Docker backend
+[[redirects]]
+  from = "/api/*"
+  to = "http://88.99.99.83:8000/api/:splat"
+  status = 200
+
+# SPA fallback for Player Frontend
+[[redirects]]
+  from = "/app/*"
+  to = "/app/index.html"
+  status = 200
+
+# SPA fallback for Admin Backoffice
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# SPA fallback for POS Terminal
+[[redirects]]
+  from = "/pos/*"
+  to = "/pos/index.html"
+  status = 200
+
+# Root → landing page
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
