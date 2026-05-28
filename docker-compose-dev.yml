@@ -45,11 +45,12 @@ services:
     restart: "no"
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://88.99.99.83:8000
     ports:
       - "5173:5173"
-    environment:
-      VITE_API_URL: http://88.99.99.83:8000
     depends_on:
       - backend
 

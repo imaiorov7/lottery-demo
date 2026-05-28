@@ -2,7 +2,7 @@
 // Include this script on your casino site to enable the lottery widget popup
 
 (function() {
-  function openLotteryWidget(lotteryId) {
+  function openLotteryWidget(lotteryId, token) {
     var existing = document.getElementById('lottery-widget-overlay');
     if (existing) {
       existing.style.display = 'flex';
@@ -29,6 +29,7 @@
       : 'http://localhost:5173';
     var src = baseUrl + '/widget?theme=dark';
     if (lotteryId) src += '&lottery=' + lotteryId;
+    if (token) src += '&token=' + encodeURIComponent(token);
     iframe.src = src;
     iframe.style.cssText = 'width:100%;height:100%;border:none;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.5)';
     iframe.allow = 'clipboard-write';
