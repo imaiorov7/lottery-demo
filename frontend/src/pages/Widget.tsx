@@ -394,6 +394,7 @@ export default function Widget() {
   const theme = params.get('theme') || 'dark'
   const isDark = theme !== 'light'
   const tokenParam = params.get('token')  // JWT passed directly from casino
+  const apiParam = params.get('api')       // absolute origin of lottery server, set by widget.js
 
   const [ready, setReady] = useState(false)
   const [view, setView] = useState<'list' | 'detail'>('list')
@@ -403,13 +404,16 @@ export default function Widget() {
   const [tickets, setTickets]   = useState<Ticket[]>([])
   const [selected, setSelected] = useState<Lottery | null>(null)
 
-  // If casino passes ?token=JWT, store it
+  // If casino passes ?token=JWT and/or ?api=ORIGIN, store them
   useEffect(() => {
+    if (apiParam) {
+      (window as any).__LOTTERY_API_BASE__ = apiParam
+    }
     if (tokenParam) {
       localStorage.setItem('token', tokenParam)
     }
     setReady(true)
-  }, [tokenParam])
+  }, [tokenParam, apiParam])
 
   const token = localStorage.getItem('token')
   const isAuth = !!token

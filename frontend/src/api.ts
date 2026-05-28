@@ -1,4 +1,4 @@
-const BASE = (import.meta.env.VITE_API_URL || '') + '/api';
+const getBase = () => ((window as any).__LOTTERY_API_BASE__ || '') + '/api';
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
   const token = localStorage.getItem('token');
@@ -8,7 +8,7 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
   };
   if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  const res = await fetch(`${BASE}${url}`, { ...options, headers });
+  const res = await fetch(`${getBase()}${url}`, { ...options, headers });
   if (res.status === 204) return undefined as T;
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: res.statusText }));
