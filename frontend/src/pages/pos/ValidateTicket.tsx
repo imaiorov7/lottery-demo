@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { ScanLine, CheckCircle, XCircle } from 'lucide-react'
-import { api, type Ticket } from '../api'
+import { api, type Ticket } from '../../api'
 
 export default function ValidateTicket() {
   const [code, setCode] = useState('')

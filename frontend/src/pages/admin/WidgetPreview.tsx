@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { api, type Lottery } from '../api'
+import { api, type Lottery } from '../../api'
 
 export default function WidgetPreview() {
   const [lotteries, setLotteries] = useState<Lottery[]>([])
@@ -34,7 +34,7 @@ export default function WidgetPreview() {
     finally { setSsoLoading(false) }
   }
 
-  const widgetBase = `${import.meta.env.VITE_FRONTEND_URL || 'http://localhost:5173'}/widget`
+  const widgetBase = `${window.location.origin}/widget`
   const widgetUrl = `${widgetBase}?theme=${theme}${ssoToken ? `&token=${ssoToken}` : ''}`
   const embedCode = `<!-- Step 1: Your backend calls our SSO endpoint -->
 POST /api/auth/widget-sso

@@ -1,19 +1,19 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Trophy, Ticket, Users, Dices, BarChart3, MonitorPlay, Plug, BookOpen, LogOut } from 'lucide-react'
+import { LayoutDashboard, Trophy, Ticket, Users, Dices, BarChart3, MonitorPlay, Plug, BookOpen, LogOut, Home } from 'lucide-react'
 
 const nav = [
-  { path: '/', label: 'Dashboard', icon: LayoutDashboard },
-  { path: '/lotteries', label: 'Lotteries', icon: Trophy },
-  { path: '/tickets', label: 'Tickets', icon: Ticket },
-  { path: '/users', label: 'Users', icon: Users },
-  { path: '/draw', label: 'Draw', icon: Dices },
-  { path: '/reports', label: 'Reports', icon: BarChart3 },
-  { path: '/widget', label: 'Widget Preview', icon: MonitorPlay },
+  { path: '/admin', label: 'Dashboard', icon: LayoutDashboard },
+  { path: '/admin/lotteries', label: 'Lotteries', icon: Trophy },
+  { path: '/admin/tickets', label: 'Tickets', icon: Ticket },
+  { path: '/admin/users', label: 'Users', icon: Users },
+  { path: '/admin/draw', label: 'Draw', icon: Dices },
+  { path: '/admin/reports', label: 'Reports', icon: BarChart3 },
+  { path: '/admin/widget-preview', label: 'Widget Preview', icon: MonitorPlay },
 ]
 
 const navBottom = [
-  { path: '/integrations', label: 'Integrations', icon: Plug },
-  { path: '/docs', label: 'API Docs', icon: BookOpen },
+  { path: '/admin/integrations', label: 'Integrations', icon: Plug },
+  { path: '/admin/docs', label: 'API Docs', icon: BookOpen },
 ]
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate()
 
   const logout = () => {
-    localStorage.removeItem('admin_token')
+    localStorage.removeItem('token')
     navigate('/login')
   }
 
@@ -59,10 +59,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             )
           })}
         </nav>
-        <button onClick={logout} className="flex items-center gap-3 px-5 py-3 text-sm text-gray-400 hover:text-white border-t border-gray-800">
-          <LogOut className="w-4 h-4" />
-          Logout
-        </button>
+        <div className="border-t border-gray-800">
+          <Link to="/" className="flex items-center gap-3 px-5 py-3 text-sm text-gray-400 hover:text-white">
+            <Home className="w-4 h-4" />
+            Back to Hub
+          </Link>
+          <button onClick={logout} className="flex items-center gap-3 px-5 py-3 text-sm text-gray-400 hover:text-white w-full">
+            <LogOut className="w-4 h-4" />
+            Logout
+          </button>
+        </div>
       </aside>
       <main className="flex-1 overflow-auto bg-gray-50 p-6">
         {children}

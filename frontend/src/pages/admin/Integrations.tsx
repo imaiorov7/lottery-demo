@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Plus, Pencil, Trash2, Check, X, RefreshCw, Wifi, WifiOff } from 'lucide-react'
-import { api } from '../api'
+import { api } from '../../api'
 
 interface Partner {
   id: string

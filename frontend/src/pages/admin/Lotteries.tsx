@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Plus, Edit, Trash2 } from 'lucide-react'
-import { api, type Lottery } from '../api'
+import { api, type Lottery } from '../../api'
 
 export default function Lotteries() {
   const [lotteries, setLotteries] = useState<Lottery[]>([])
@@ -24,7 +24,7 @@ export default function Lotteries() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Lotteries</h1>
-        <Link to="/lotteries/new" className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
+        <Link to="/admin/lotteries/new" className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
           <Plus className="w-4 h-4" /> New Lottery
         </Link>
       </div>
@@ -52,7 +52,7 @@ export default function Lotteries() {
                 <td className="px-4 py-3 text-gray-600">{l.ticket_count}</td>
                 <td className="px-4 py-3 text-gray-600">{new Date(l.end_date).toLocaleDateString()}</td>
                 <td className="px-4 py-3 text-right">
-                  <Link to={`/lotteries/${l.id}`} className="text-blue-600 hover:text-blue-800 mr-3">
+                  <Link to={`/admin/lotteries/${l.id}`} className="text-blue-600 hover:text-blue-800 mr-3">
                     <Edit className="w-4 h-4 inline" />
                   </Link>
                   <button onClick={() => remove(l.id)} className="text-red-500 hover:text-red-700">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Search, UserCheck, UserX } from 'lucide-react'
-import { api, type User } from '../api'
+import { api, type User } from '../../api'
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([])

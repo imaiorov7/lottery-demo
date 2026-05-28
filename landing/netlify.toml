@@ -1,8 +1,0 @@
-[build]
-  command = "sed -i \"s|__LOTTERY_HOST__|${LOTTERY_HOST:-http://localhost}|g\" index.html"
-  publish = "."
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200

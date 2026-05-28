@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Printer } from 'lucide-react'
-import { api, type Lottery, type Ticket } from '../api'
+import { api, type Lottery, type Ticket } from '../../api'
 
 export default function SellTicket() {
   const [lotteries, setLotteries] = useState<Lottery[]>([])

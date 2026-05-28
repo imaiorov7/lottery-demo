@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Trophy } from 'lucide-react'
-import { api, type Lottery, type DrawResult } from '../api'
+import { api, type Lottery, type DrawResult } from '../../api'
 
 export default function Draw() {
   const [lotteries, setLotteries] = useState<Lottery[]>([])

@@ -36,7 +36,7 @@ export default function Home() {
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {lotteries.map((lot) => (
-            <Link key={lot.id} to={`/lottery/${lot.id}`} className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-brand-500/50 hover:bg-gray-900/80 transition-all group">
+            <Link key={lot.id} to={`/player/lottery/${lot.id}`} className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-brand-500/50 hover:bg-gray-900/80 transition-all group">
               {lot.banner_image_url && (
                 <img src={lot.banner_image_url} alt={lot.name} className="w-full h-32 object-cover" />
               )}

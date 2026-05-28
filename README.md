@@ -1,77 +1,33 @@
 # Lottery Demo System
 
+Full MVP demo system for a lottery/raffle platform with a unified frontend combining Player, Admin Backoffice, and POS Terminal portals.
+
 ## Quick Start
 
 ```bash
 docker compose up --build
 ```
 
-## Access URLs
-
-After starting Docker, open these URLs in your browser:
-
-- **Frontend (Player)**: http://localhost:5173
-- **Backoffice (Admin)**: http://localhost:5174
-- **POS (Operator)**: http://localhost:5175
-- **Backend API**: http://localhost:8000
-
-Full MVP demo system for a lottery/raffle platform with multiple entry channels.
+Open **http://localhost:5173** and log in.
 
 ## Architecture
 
 ```
 lottery_demo/
   backend/       FastAPI + SQLAlchemy + PostgreSQL
-  frontend/      Player-facing React app (entry purchase, ticket view)
-  backoffice/    Admin panel (lottery management, stats, draw)
-  pos/           POS terminal (sell tickets, validate via QR/code)
+  frontend/      Unified React app (Player + Admin + POS)
 ```
 
-## Quick Start
+Single frontend at port **5173** with three portals:
+- `/player` — Buy tickets, play games, redeem coupons
+- `/admin` — Manage lotteries, view reports, run draws
+- `/pos` — Sell physical tickets, validate entries
 
-### With Docker (recommended)
+## Demo Account
 
-```bash
-docker-compose up --build
-```
-
-Services:
-- **Backend API**: http://localhost:8000 (docs at /docs)
-- **Player Frontend**: http://localhost:5173
-- **Admin Backoffice**: http://localhost:5174
-- **POS Terminal**: http://localhost:5175
-
-### Seed Demo Data
-
-```bash
-docker-compose exec backend python -m app.seed
-```
-
-### Without Docker (local dev)
-
-```bash
-# Backend
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
-
-# In another terminal - seed data
-cd backend
-python -m app.seed
-
-# Frontend (any of the three)
-cd frontend  # or backoffice / pos
-npm install
-npm run dev
-```
-
-## Demo Accounts
-
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@lottery.demo | admin123 |
-| POS Operator | pos@lottery.demo | pos123 |
-| Player | player@lottery.demo | player123 |
+| Email | Password |
+|-------|----------|
+| admin@lottery.demo | admin123 |
 
 ## API Endpoints
 
@@ -118,31 +74,6 @@ npm run dev
 1. **Casino Play** - External casino verifies eligibility via API, auto-creates ticket
 2. **Direct Purchase** - Player buys entry through web frontend
 3. **Physical Sale** - POS operator sells ticket, prints QR code
-
-## Netlify Landing Page
-
-A landing page is included in `landing/` for Netlify hosting. It provides a hub to access all three portals.
-
-### Deploy to Netlify
-
-1. Connect this repo to Netlify
-2. Set **Base directory** to `landing`
-3. Set **Build command** to the one in `landing/netlify.toml` (auto-detected)
-4. Add environment variable in Netlify:
-   - `LOTTERY_HOST` = `http://88.99.99.83` (your Docker server IP)
-
-The landing page will link to:
-- `{LOTTERY_HOST}:5173` — Player Frontend
-- `{LOTTERY_HOST}:5174` — Admin Backoffice
-- `{LOTTERY_HOST}:5175` — POS Terminal
-
-### Local preview
-
-```bash
-cd landing
-python3 -m http.server 8080
-# Open http://localhost:8080
-```
 
 ## Key Features
 

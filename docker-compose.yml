@@ -50,27 +50,6 @@ services:
       - "5173:5173"
     environment:
       VITE_API_URL: http://host.docker.internal:8000
-      VITE_FRONTEND_URL: http://localhost:5173
-    depends_on:
-      - backend
-
-  backoffice:
-    build: ./backoffice
-    ports:
-      - "5174:5174"
-    environment:
-      VITE_API_URL: http://backend:8000
-      VITE_FRONTEND_URL: http://localhost:5173
-    depends_on:
-      - backend
-
-  pos:
-    build: ./pos
-    ports:
-      - "5175:5173"
-    environment:
-      VITE_API_URL: http://host.docker.internal:8000
-      VITE_FRONTEND_URL: http://localhost:5173
     depends_on:
       - backend
 

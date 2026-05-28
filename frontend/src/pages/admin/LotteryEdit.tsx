@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Save, ArrowLeft, Info, Plus, Trash2, ChevronDown, ChevronUp } from 'lucide-react'
-import { api } from '../api'
+import { api } from '../../api'
 
 // ── Tooltip ──────────────────────────────────────────────────────────────────
 function Tip({ text }: { text: string }) {
@@ -198,7 +198,7 @@ export default function LotteryEdit() {
       } else {
         await api.patch(`/lotteries/${id}`, body)
       }
-      navigate('/lotteries')
+      navigate('/admin/lotteries')
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -239,7 +239,7 @@ export default function LotteryEdit() {
   return (
     <div className="max-w-5xl">
       <div className="flex items-center gap-3 mb-6">
-        <button onClick={() => navigate('/lotteries')} className="text-gray-400 hover:text-gray-600">
+        <button onClick={() => navigate('/admin/lotteries')} className="text-gray-400 hover:text-gray-600">
           <ArrowLeft className="w-5 h-5" />
         </button>
         <h1 className="text-2xl font-bold text-gray-900">{isNew ? 'New Lottery' : 'Edit Lottery'}</h1>
@@ -754,7 +754,7 @@ export default function LotteryEdit() {
         <div className="sticky bottom-0 bg-white border-t py-4 flex items-center justify-between gap-3 -mx-6 px-6">
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <div className="ml-auto flex gap-3">
-            <button type="button" onClick={() => navigate('/lotteries')}
+            <button type="button" onClick={() => navigate('/admin/lotteries')}
               className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800">Cancel</button>
             <button type="submit" disabled={saving}
               className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50">

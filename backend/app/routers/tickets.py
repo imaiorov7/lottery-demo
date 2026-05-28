@@ -74,8 +74,7 @@ async def list_tickets(
     current_user: User = Depends(get_current_user),
 ):
     q = select(Ticket).options(selectinload(Ticket.lottery), selectinload(Ticket.user))
-    if current_user.role.value not in ("admin", "pos_operator"):
-        q = q.where(Ticket.user_id == current_user.id)
+    # No role filtering in demo mode - all users can see all tickets
     if lottery_id:
         q = q.where(Ticket.lottery_id == lottery_id)
     if status_filter:
@@ -98,8 +97,7 @@ async def get_ticket(
     ticket = result.scalar_one_or_none()
     if not ticket:
         raise HTTPException(status_code=404, detail="Ticket not found")
-    if current_user.role.value not in ("admin", "pos_operator") and ticket.user_id != current_user.id:
-        raise HTTPException(status_code=403, detail="Access denied")
+    # No role restriction in demo mode
     return _ticket_to_out(ticket)
 
 

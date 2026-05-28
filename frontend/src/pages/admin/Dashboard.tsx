@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Trophy, Ticket, DollarSign, Users } from 'lucide-react'
-import { api, type DashboardStats } from '../api'
+import { api, type DashboardStats } from '../../api'
 
 export default function Dashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null)

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BarChart3, TrendingUp, Users, DollarSign } from 'lucide-react'
-import { api, type Lottery } from '../api'
+import { api, type Lottery } from '../../api'
 
 interface RevenueReport {
   total_revenue: string
